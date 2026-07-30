@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Mami Lechera - Tragaperras</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:
+linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.55)),
+url("IMG_4288.HEIC") center center/cover no-repeat;
+
+overflow:hidden;
+
+}
+
+.card{
+
+width:min(95vw,520px);
+
+background:rgba(255,255,255,.95);
+
+border-radius:30px;
+
+padding:35px;
+
+text-align:center;
+
+box-shadow:0 25px 70px rgba(0,0,0,.45);
+
+backdrop-filter:blur(10px);
+
+}
+
+h1{
+
+font-size:42px;
+
+color:#ff2c7d;
+
+margin-bottom:15px;
+
+text-shadow:0 3px 10px rgba(255,0,120,.25);
+
+}
+
+h2{
+
+font-size:20px;
+
+color:#555;
+
+margin-bottom:30px;
+
+}
+
+.slot{
+
+display:flex;
+
+justify-content:center;
+
+gap:18px;
+
+margin-bottom:35px;
+
+}
+
+.reel{
+
+width:110px;
+
+height:110px;
+
+background:white;
+
+border:6px solid #ff2c7d;
+
+border-radius:22px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:60px;
+
+box-shadow:
+
+0 0 20px rgba(255,0,128,.35),
+
+inset 0 0 10px rgba(0,0,0,.15);
+
+}
+
+button{
+
+background:#ff2c7d;
+
+color:white;
+
+border:none;
+
+padding:18px 45px;
+
+border-radius:60px;
+
+font-size:22px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:0 10px 30px rgba(255,0,100,.35);
+
+}
+
+button:hover{
+
+transform:scale(1.06);
+
+}
+
+#resultado{
+
+margin-top:30px;
+
+font-size:30px;
+
+font-weight:bold;
+
+color:#ff2c7d;
+
+min-height:90px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🎰 LA MAMI LECHERA 🎰</h1>
+
+<h2>¡Gira la tragaperras y prueba suerte!</h2>
+
+<div class="slot">
+
+<div class="reel" id="r1">💖</div>
+
+<div class="reel" id="r2">👑</div>
+
+<div class="reel" id="r3">💎</div>
+
+</div>
+
+<button onclick="girar()">
+
+🎰 GIRAR 🎰
+
+</button>
+
+<div id="resultado"></div>
+
+</div>
+
+<script>
+
+const iconos=[
+"💖","👑","💎","🎁","🍀","💰","⭐","🔥","🎉","💋"
+];
+
+const premios=[
+
+"Premio 1",
+"Premio 2",
+"Premio 3",
+"Premio 4",
+"Premio 5",
+"Premio 6",
+"Premio 7",
+"Premio 8",
+"Premio 9",
+"Premio 10"
+
+];
+
+const ganadores=[
+
+2,
+5,
+8
+
+];
+
+function emoji(){
+
+return iconos[Math.floor(Math.random()*iconos.length)];
+
+}
+
+function girar(){
+
+resultado.innerHTML="";
+
+let vueltas=0;
+
+let animacion=setInterval(()=>{
+
+r1.innerHTML=emoji();
+
+r2.innerHTML=emoji();
+
+r3.innerHTML=emoji();
+
+vueltas++;
+
+if(vueltas>30){
+
+clearInterval(animacion);
+
+finalizar();
+
+}
+
+},80);
+
+}
+
+function finalizar(){
+
+if(Math.random()<0.30){
+
+let premio=ganadores[Math.floor(Math.random()*ganadores.length)];
+
+resultado.innerHTML=
+
+"🎉<br>HAS GANADO<br><br>"+premios[premio];
+
+}
+else{
+
+resultado.innerHTML=
+
+"❤️<br>Esta vez no ha habido suerte";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
